@@ -10,6 +10,10 @@
   "keywords": [],
   "author": "Andrew Beyea",
   "license": "MIT",
+  "engines": {
+    "npm": "9.8.1",
+    "node": "14.17.6"
+    },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
