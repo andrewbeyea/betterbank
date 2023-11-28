@@ -49,6 +49,7 @@ function DepositForm(props){
         console.log(data.length);
       }});
     // then respond with the new balance
+    var url=`/account/balance/${email}`;                          
     setTimeout(()=>{
       fetch(url)
       .then(response => response.json())
