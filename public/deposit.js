@@ -35,6 +35,8 @@ function DepositForm(props){
 
   function handle(){
     console.log(email,amount);
+    props.setStatus('Your balance is being updated'); 
+    props.setShow(false);
     var url=`/account/transaction/${email}/${amount}`;
     fetch(url)
       .then(response => response.json())
@@ -45,12 +47,10 @@ function DepositForm(props){
         } else {
         console.log(data);
         console.log(data.length);
-        props.setStatus('Your balance has been updated'); 
-        props.setShow(false);
       }});
     // then respond with the new balance
-    var url=`/account/balance/${email}`;
-    fetch(url)
+    setTimeout(()=>{
+      fetch(url)
       .then(response => response.json())
       .then(data => {
         if (data.length == 0) {
@@ -62,6 +62,7 @@ function DepositForm(props){
         props.setStatus('Your balance is: $' + data[0].balance); 
         props.setShow(false);
     }});
+    },2000)
   }
 
   return(<>
