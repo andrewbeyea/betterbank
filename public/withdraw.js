@@ -85,7 +85,7 @@ function WithdrawForm(props){
 
     <button type="submit" 
       className="btn btn-light" 
-      onClick={()=>(setTimeout(handle(),1000))}>
+      onClick={handle}>
         Withdraw
     </button>
 
