@@ -38,7 +38,7 @@ app.get('/account/all', function(req,res){
 
 // balance
 app.get('/account/balance/:email', function(req,res){
-    setTimeout(dal.getBalance(req.params.email),1000)
+    dal.getBalance(req.params.email)
     .then((data)=>{
         console.log(data);
         res.send(data);
