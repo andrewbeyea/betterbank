@@ -36,6 +36,8 @@ function WithdrawForm(props){
   function handle(){
     let amt = amount * -1;
     console.log(email,amt);
+    props.setStatus('Your balance is being updated'); 
+    props.setShow(false);
     var url=`/account/transaction/${email}/${amt}`;
     fetch(url)
       .then(response => response.json())
@@ -46,8 +48,6 @@ function WithdrawForm(props){
         } else {
         console.log(data);
         console.log(data.length);
-        props.setStatus('Your balance has been updated'); 
-        props.setShow(false);
       }});
     // then respond with the new balance after waiting a half second
       var url=`/account/balance/${email}`;
