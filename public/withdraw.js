@@ -32,23 +32,7 @@ function WithdrawForm(props){
   const userData = {user: localStorage.getItem('user'), role: localStorage.getItem('role')};
   const [email, setEmail]   = React.useState(userData.user);
   const [amount, setAmount] = React.useState('');
-
-  function checkBalance(email){
-    var url=`/account/balance/${email}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        if (data.length == 0) {
-          props.setStatus('This user is not in our records')      
-          return;      
-        } else {
-        console.log(data);
-        console.log(data.length);
-        props.setStatus('Your balance is: $' + data[0].balance); 
-        props.setShow(false);
-    }});
-  }
-  
+ 
   function handle(){
     let amt = amount * -1;
     console.log(email,amt);
@@ -66,7 +50,19 @@ function WithdrawForm(props){
         props.setShow(false);
       }});
     // then respond with the new balance after waiting a half second
-    setTimeout(checkBalance(email),500);
+    var url=`/account/balance/${email}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length == 0) {
+          props.setStatus('This user is not in our records')      
+          return;      
+        } else {
+        console.log(data);
+        console.log(data.length);
+        props.setStatus('Your balance is: $' + data[0].balance); 
+        props.setShow(false);
+    }});
   }
 
 
@@ -89,7 +85,7 @@ function WithdrawForm(props){
 
     <button type="submit" 
       className="btn btn-light" 
-      onClick={handle}>
+      onClick={setTimeout(handle,1000)}>
         Withdraw
     </button>
 
