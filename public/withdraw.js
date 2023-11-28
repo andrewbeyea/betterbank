@@ -51,7 +51,8 @@ function WithdrawForm(props){
       }});
     // then respond with the new balance after waiting a half second
       var url=`/account/balance/${email}`;
-    .then(fetch(url)
+    setTimeout(()=>{
+      fetch(url)
       .then(response => response.json())
       .then(data => {
         if (data.length == 0) {
@@ -61,8 +62,10 @@ function WithdrawForm(props){
         console.log(data);
         console.log(data.length);
         props.setStatus('Your balance is: $' + data[0].balance); 
-        props.setShow(false));
+        props.setShow(false);
     }});
+    },2000)
+
   }
 
 
